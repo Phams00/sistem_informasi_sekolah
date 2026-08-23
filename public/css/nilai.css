@@ -1,0 +1,85 @@
+/* ============================================
+   NILAI.CSS
+   Tabel nilai dengan cell warna
+   ============================================ */
+
+.nilai-grade {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.nilai-grade.a { background:rgba(22,163,74,0.1); color:#16a34a; }
+.nilai-grade.b { background:rgba(13,148,136,0.1); color:#0d9488; }
+.nilai-grade.c { background:rgba(245,158,11,0.1); color:#f59e0b; }
+.nilai-grade.d { background:rgba(244,63,94,0.1); color:#f43f5e; }
+.nilai-grade.e { background:rgba(220,38,38,0.12); color:#dc2626; }
+
+.nilai-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.nilai-summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.nilai-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.nilai-summary-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.nilai-summary-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.nilai-rata-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nilai-rata-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.nilai-rata-info { flex: 1; }
+.nilai-rata-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; }
+.nilai-rata-desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+@media (max-width: 768px) {
+    .nilai-summary-grid { grid-template-columns: repeat(3, 1fr); }
+    .nilai-rata-card { flex-direction: column; text-align: center; }
+}

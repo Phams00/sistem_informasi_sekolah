@@ -1,0 +1,71 @@
+/* ============================================
+   ABSENSI.CSS
+   Tabel absensi dengan badge status
+   ============================================ */
+
+.absensi-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.absensi-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.absensi-stat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.absensi-stat-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.absensi-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.status-badge.hadir { background: rgba(22,163,74,0.1); color: #16a34a; }
+.status-badge.sakit { background: rgba(245,158,11,0.1); color: #f59e0b; }
+.status-badge.izin  { background: rgba(59,130,246,0.1); color: #3b82f6; }
+.status-badge.alpha { background: rgba(220,38,38,0.1); color: #dc2626; }
+
+.absensi-persen {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.absensi-persen.high { color: var(--success); }
+.absensi-persen.mid  { color: #f59e0b; }
+.absensi-persen.low  { color: var(--danger); }
+
+@media (max-width: 768px) {
+    .absensi-stats { grid-template-columns: repeat(2, 1fr); }
+}

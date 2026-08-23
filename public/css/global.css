@@ -1,0 +1,154 @@
+/* ============================================
+   GLOBAL.CSS
+   Variabel, reset, font, utility dasar
+   ============================================ */
+
+:root {
+    --bg: #f1f5f0;
+    --fg: #1a2e1a;
+    --muted: #6b7f6b;
+    --accent: #0d9488;
+    --accent-light: #14b8a6;
+    --accent-dark: #0f766e;
+    --accent-glow: rgba(13, 148, 136, 0.15);
+    --card: #ffffff;
+    --border: #d4ddd4;
+    --sidebar-bg: #0f1923;
+    --sidebar-hover: #1a2b3a;
+    --sidebar-active: #0d3b3e;
+    --sidebar-border: #1e3345;
+    --sidebar-text: #8899aa;
+    --sidebar-heading: #c8d6e0;
+    --danger: #dc2626;
+    --warning: #f59e0b;
+    --success: #16a34a;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Scrollbar kustom */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #b0c4b0;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #8aaa8a;
+}
+
+/* Background dekorasi halaman */
+.bg-decoration {
+    position: fixed;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bg-decoration-2 {
+    position: fixed;
+    bottom: -150px;
+    left: 200px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Animasi dasar */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+}
+.fade-up:nth-child(1) { animation-delay: 0.05s; }
+.fade-up:nth-child(2) { animation-delay: 0.1s; }
+.fade-up:nth-child(3) { animation-delay: 0.15s; }
+.fade-up:nth-child(4) { animation-delay: 0.2s; }
+
+.fade-up-delay {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease 0.25s forwards;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
