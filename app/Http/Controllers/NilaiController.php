@@ -39,44 +39,54 @@ class NilaiController extends Controller
 
     public function create()
     {
-        $siswas = Siswa::orderBy('nama')->get();
         $mapelList = Mapel::orderBy('nama_mapel')->get();
-        $selectedKelas = request('kelas', $siswas->first()?->kelas);
         $selectedMapel = $mapelList->firstWhere('id', request('mapel_id'));
+    
+        if (! $selectedMapel) {
+            return redirect()->route('admin.nilai.index')
+                ->with('error', 'Pilih mata pelajaran terlebih dahulu sebelum input nilai.');
+        }
+    
+        $siswas = Siswa::orderBy('nama')->get();
+        $selectedKelas = request('kelas', $siswas->first()?->kelas);
         $semester = (int) request('semester', 1);
         $existingNilai = collect();
-
+    
         return view('nilai.create', compact('siswas', 'mapelList', 'selectedKelas', 'selectedMapel', 'semester', 'existingNilai'));
     }
 
     public function store(Request $request)
     {
         if ($request->has('tugas') || $request->has('uts') || $request->has('uas')) {
+            $request->validate([
+                'mapel_id' => 'required|exists:mapel,id',
+            ]);
+    
             foreach (['tugas' => 'Tugas', 'uts' => 'UTS', 'uas' => 'UAS'] as $field => $type) {
                 foreach ($request->input($field, []) as $siswaId => $score) {
                     if ($score === null || $score === '') {
                         continue;
                     }
-
+    
                     Nilai::updateOrCreate(
                         ['siswa_id' => $siswaId, 'mapel_id' => $request->input('mapel_id'), 'jenis' => $type],
                         ['nilai' => $score]
                     );
                 }
             }
-
+    
             return redirect()->route('admin.nilai.index')->with('success', 'Nilai berhasil disimpan!');
         }
-
+    
         $validated = $request->validate([
             'siswa_id' => 'required|exists:siswa,id',
             'mapel_id' => 'required|exists:mapel,id',
             'jenis' => 'required|in:Tugas,UTS,UAS',
             'nilai' => 'required|integer|min:0|max:100',
         ]);
-
+    
         Nilai::create($validated);
-
+    
         return redirect()->route('admin.nilai.index')->with('success', 'Nilai berhasil disimpan!');
     }
 
