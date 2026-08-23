@@ -11,6 +11,7 @@ class Nilai extends Model
     protected $fillable = [
         'siswa_id',
         'mapel_id',
+        'semester',
         'jenis',
         'nilai',
     ];
@@ -54,6 +55,7 @@ class Nilai extends Model
         return static::query()
             ->where('siswa_id', $this->siswa_id)
             ->where('mapel_id', $this->mapel_id)
+            ->where('semester', $this->semester)
             ->where('jenis', $type)
             ->value('nilai');
     }
